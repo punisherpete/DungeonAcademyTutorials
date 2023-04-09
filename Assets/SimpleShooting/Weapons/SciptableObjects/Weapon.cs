@@ -46,9 +46,9 @@ public abstract class Weapon : ScriptableObject
     {
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(shootingPoint.position, Camera.main.transform.forward, out hitInfo, shootingRange))
+        if (Physics.Raycast(shootingPoint.position, shootingPoint.transform.forward + Camera.main.transform.forward, out hitInfo, shootingRange))
         {
-            Debug.Log("enemy hit");
+            Debug.Log(hitInfo.collider.name);
         }
     }
 }

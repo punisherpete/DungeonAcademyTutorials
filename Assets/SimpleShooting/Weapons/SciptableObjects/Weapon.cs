@@ -9,10 +9,9 @@ public abstract class Weapon : ScriptableObject
 
     [field: SerializeField] public int Damage { get; protected set; }
     [field: SerializeField] public int MaxAmmo { get; protected set; }
+    [SerializeField] protected float shootingRange;
     [field: SerializeField] public Sprite Icon { get; protected set; }
     [field: SerializeField] public GameObject Prefab { get; protected set; }
-
-    [SerializeField] protected float shootingRange;
 
     public int CurrentAmmo { get; protected set; }
     public bool IsReloading { get; protected set; } = false;

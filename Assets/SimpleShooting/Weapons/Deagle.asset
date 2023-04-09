@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 50
   <MaxAmmo>k__BackingField: 7
+  shootingRange: 100
   <Icon>k__BackingField: {fileID: 0}
   <Prefab>k__BackingField: {fileID: 3677193418782773168, guid: 3068131d794694c07890a8c2ceb699f1, type: 3}
-  shootingPoint: {fileID: 0}
-  shootingRange: 0

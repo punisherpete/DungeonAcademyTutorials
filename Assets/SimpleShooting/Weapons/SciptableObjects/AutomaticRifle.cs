@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/AutomaticRifle")]
@@ -9,27 +10,20 @@ public class AutomaticRifle : Weapon
 
     private float nextFireTime;
 
-    public override void Shoot()
+    public override void InitWeapon(Transform shootingPoint)
     {
-        base.Shoot();
+        base.InitWeapon(shootingPoint);
 
-        while (Input.GetButton("Fire1"))
+        nextFireTime = 0;
+    }
+
+    public override async void Shoot()
+    {
+        while (Input.GetMouseButton(0))
         {
-            if (Time.time >= nextFireTime)
-            {
-                nextFireTime = Time.time + 1f / fireRate;
-
-                if (CurrentAmmo > 0)
-                {
-                    PerformShot();
-                    CurrentAmmo--;
-                }
-                else
-                {
-                    Debug.Log("Out of ammo.");
-                    Reload();
-                }
-            }
+            int cooldown = (int)(1000 / fireRate);
+            await Task.Delay(cooldown);
+            base.Shoot();
         }
     }
 }

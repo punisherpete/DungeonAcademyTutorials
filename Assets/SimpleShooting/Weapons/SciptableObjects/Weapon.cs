@@ -19,12 +19,25 @@ public abstract class Weapon : ScriptableObject
     public virtual void InitWeapon(Transform shootingPoint)
     {
         this.shootingPoint = shootingPoint;
+        CurrentAmmo = MaxAmmo;
     }
 
     public virtual void Shoot()
     {
         if (shootingPoint == null)
+        {
             throw new Exception("Shooting point not Initialized!");
+        }
+            
+
+        if(CurrentAmmo <= 0)
+        {
+            Debug.Log("Out of ammo!");
+            Reload();
+            return;
+        }
+
+        PerformShot();
     }
 
     public virtual void Reload()
@@ -43,11 +56,12 @@ public abstract class Weapon : ScriptableObject
 
     protected virtual void PerformShot()
     {
+        CurrentAmmo--;
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(shootingPoint.position, shootingPoint.transform.forward + Camera.main.transform.forward, out hitInfo, shootingRange))
+        if (Physics.Raycast(shootingPoint.position, (shootingPoint.transform.forward + Camera.main.transform.forward).normalized, out hitInfo, shootingRange))
         {
-            Debug.Log(hitInfo.collider.name);
+            Debug.Log(hitInfo.collider.name + " shot!");
         }
     }
 }

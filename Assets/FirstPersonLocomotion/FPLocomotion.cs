@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-
 public class FPLocomotion : MonoBehaviour
 {
     private float horizontalInput;
@@ -22,7 +21,9 @@ public class FPLocomotion : MonoBehaviour
     [SerializeField] private Transform groundPoint;
     [SerializeField] private Rigidbody playerRig;
 
-    private bool IsGrounded => Physics.OverlapSphere(groundPoint.position, 0.1f, groundMask).Length != 0;
+    private bool IsGrounded =>
+        Physics.OverlapSphere(groundPoint.position,
+            0.1f, groundMask).Length != 0;
 
     private void Start()
     {
@@ -51,24 +52,34 @@ public class FPLocomotion : MonoBehaviour
 
     private void Rotate()
     {
-        float rotationY = transform.localEulerAngles.y + mouseX * mouseSensitivity * Time.deltaTime;
+        float rotationY =
+            transform.localEulerAngles.y +
+            mouseX * mouseSensitivity * Time.deltaTime;
 
-        rotationX -= mouseY * mouseSensitivity * Time.deltaTime;
+        rotationX -= mouseY *
+            mouseSensitivity * Time.deltaTime;
+
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
 
-        transform.localEulerAngles = new Vector3(0f, rotationY, 0f);
-        playerRoot.localEulerAngles = new Vector3(rotationX, 0f, 0f);
+        transform.localEulerAngles =
+            new Vector3(0f, rotationY, 0f);
+        playerRoot.localEulerAngles =
+            new Vector3(rotationX, 0f, 0f);
     }
 
     private void Jump()
     {
-        playerRig.AddForce(Vector3.up * jumpForce, ForceMode.Acceleration);
+        playerRig.AddForce(Vector3.up * jumpForce,
+            ForceMode.Acceleration);
     }
 
     private void Move()
     {
-        Vector3 moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+        Vector3 moveDirection =
+            transform.forward * verticalInput
+            + transform.right * horizontalInput;
 
-        transform.position += moveDirection * speed * Time.deltaTime;
+        transform.position +=
+            moveDirection * speed * Time.deltaTime;
     }
 }

@@ -722,6 +722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5015672643770313386, guid: 064431d83b76f445092923b5aa01972f, type: 3}
+      propertyPath: m_Constraints
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 5015672643770313391, guid: 064431d83b76f445092923b5aa01972f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -732,7 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5015672643770313391, guid: 064431d83b76f445092923b5aa01972f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.122
+      value: 1.529
       objectReference: {fileID: 0}
     - target: {fileID: 5015672643770313391, guid: 064431d83b76f445092923b5aa01972f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1041,7 +1045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054213066}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -1.747, y: 5.932, z: 3.026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1067,7 +1071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSpawnPosition: {fileID: 1841689904516926726}
   weapons:
-  - {fileID: 11400000, guid: 98cc7d163435943b4b1f65302f449848, type: 2}
+  - {fileID: 11400000, guid: 5c26904b3e2e0493aa4a29944a295185, type: 2}
 --- !u!4 &1841689904516926726
 Transform:
   m_ObjectHideFlags: 0

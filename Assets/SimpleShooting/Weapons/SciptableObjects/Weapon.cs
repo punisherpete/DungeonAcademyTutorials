@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public abstract class Weapon : ScriptableObject
@@ -10,6 +11,7 @@ public abstract class Weapon : ScriptableObject
     [field: SerializeField] public int Damage { get; protected set; }
     [field: SerializeField] public int MaxAmmo { get; protected set; }
     [SerializeField] protected float shootingRange;
+    [SerializeField] protected float reloadCooldown;
     [field: SerializeField] public Sprite Icon { get; protected set; }
     [field: SerializeField] public GameObject Prefab { get; protected set; }
 
@@ -40,7 +42,7 @@ public abstract class Weapon : ScriptableObject
         PerformShot();
     }
 
-    public virtual void Reload()
+    public async virtual void Reload()
     {
         if (IsReloading || CurrentAmmo == MaxAmmo)
         {
@@ -50,8 +52,12 @@ public abstract class Weapon : ScriptableObject
         IsReloading = true;
         Debug.Log("Reloading...");
 
+        await Task.Delay((int)(reloadCooldown * 1000));
+
         CurrentAmmo = MaxAmmo;
         IsReloading = false;
+
+        Debug.Log("Reload Finished");
     }
 
     protected virtual void PerformShot()
@@ -59,9 +65,12 @@ public abstract class Weapon : ScriptableObject
         CurrentAmmo--;
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(shootingPoint.position, (shootingPoint.transform.forward + Camera.main.transform.forward).normalized, out hitInfo, shootingRange))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, shootingRange))
         {
-            Debug.Log(hitInfo.collider.name + " shot!");
+            if(hitInfo.transform.TryGetComponent<IDamageable>(out var damageable))
+            {
+                damageable.GetDamage(Damage);
+            }
         }
     }
 }

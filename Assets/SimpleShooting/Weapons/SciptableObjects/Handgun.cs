@@ -5,8 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapons/Handgun")]
 public class Handgun : Weapon
 {
-    public override void Shoot()
-    {
-        base.Shoot();
-    }
+
 }

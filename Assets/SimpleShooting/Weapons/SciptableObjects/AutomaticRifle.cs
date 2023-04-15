@@ -10,9 +10,9 @@ public class AutomaticRifle : Weapon
 
     private float nextFireTime;
 
-    public override void InitWeapon(Transform shootingPoint)
+    public override void InitWeapon()
     {
-        base.InitWeapon(shootingPoint);
+        base.InitWeapon();
 
         nextFireTime = 0;
     }

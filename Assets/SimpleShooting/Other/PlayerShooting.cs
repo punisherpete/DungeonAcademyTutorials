@@ -13,7 +13,8 @@ public class PlayerShooting : MonoBehaviour
     {
         foreach (var weapon in weapons)
         {
-            weapon.InitWeapon(Instantiate(weapon.Prefab, weaponSpawnPosition).GetComponent<WeaponsComponentsHandler>().ShootingPoint);
+            Instantiate(weapon.Prefab, weaponSpawnPosition);
+            weapon.InitWeapon();
         }
 
         currentWeapon = weapons[0];

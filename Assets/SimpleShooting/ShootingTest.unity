@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSpawnPosition: {fileID: 1841689904516926726}
   weapons:
-  - {fileID: 11400000, guid: 5c26904b3e2e0493aa4a29944a295185, type: 2}
+  - {fileID: 11400000, guid: 98cc7d163435943b4b1f65302f449848, type: 2}
 --- !u!4 &1841689904516926726
 Transform:
   m_ObjectHideFlags: 0
